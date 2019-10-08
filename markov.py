@@ -64,24 +64,32 @@ def make_text(chains):
     #try iteration except KeyError break
     
     #print random key followed by random choice value 
-    random_key = choice(chains.keys())
+    for random_key, random_value in chains:
+        random_key = choice(list(chains.keys()))
+        random_value = choice(chains[random_key])
 
-    random_value = choice(chains[random_key])
-    words.append(random_key)
-    words.append(random_value)
-    
+        words.append(random_key[0])
+        # words.append(random_key[1])
+        words.append(random_value)
+
+        if chains[random_key] == chains.get(random_key, True):
+            continue
+
+    # print(random_key, random_value)
+    # print(words)
     return " ".join(words)
 
 
 input_path = "green-eggs.txt"
 
-# Open the file and turn it into one long string
+# # Open the file and turn it into one long string
 input_text = open_and_read_file(input_path)
 
-# Get a Markov chain
+# # Get a Markov chain
 chains = make_chains(input_text)
 
-# Produce random text
+# # Produce random text
 random_text = make_text(chains)
 
 print(random_text)
+# make_text(chains)
