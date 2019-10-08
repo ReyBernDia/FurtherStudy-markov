@@ -64,19 +64,20 @@ def make_text(chains):
     #try iteration except KeyError break
     
     #print random key followed by random choice value 
-    for random_key, random_value in chains:
-        random_key = choice(list(chains.keys()))
+    while True:
+        random_key = choice(list(chains.keys())) #link
         random_value = choice(chains[random_key])
 
+        new_key = (random_key[1],random_value)
+
         words.append(random_key[0])
-        # words.append(random_key[1])
+        words.append(random_key[1])
         words.append(random_value)
 
-        if chains[random_key] == chains.get(random_key, True):
-            continue
+        if not new_key in chains.keys():
+            break
 
-    # print(random_key, random_value)
-    # print(words)
+
     return " ".join(words)
 
 
