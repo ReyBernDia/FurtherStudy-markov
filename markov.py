@@ -44,7 +44,7 @@ def make_chains(text_string):
 
     words = text_string.split()
 
-    for num in range(len(words)-2): 
+    for num in range(len(words)-2):
         tuple_key = (words[num], words[num+1])
 
         if tuple_key in chains:
